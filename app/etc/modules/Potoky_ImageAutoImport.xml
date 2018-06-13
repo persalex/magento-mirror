@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Potoky_ImageAutoImport>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Potoky_ImageAutoImport>
+    </modules>
+</config>

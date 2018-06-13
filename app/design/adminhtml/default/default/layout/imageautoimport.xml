@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_catalog_product_index>
+        <reference name="products_list">
+            <action method="addButton" translate="label">
+                <id>images_import_queue</id>
+                <data>
+                    <label>Import of Images</label>
+                    <onclick>setLocation(queueButtonUrl)</onclick>
+                    <class>imageautoimport</class>
+                </data>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="adminhtml/template" name="queue_button_url" template="imageautoimport/queue_button_url.phtml" />
+        </reference>
+    </adminhtml_catalog_product_index>
+    <adminhtml_imageautoimport_index>
+        <reference name="content">
+            <block type="adminhtml/template" template="imageautoimport/before.phtml" name="importtoqueue.form.before" alias="form_before"/>
+            <block type="imageautoimport/adminhtml_formcontainer" name="importtoqueue_formcontainer"/>
+            <block type="adminhtml/template" template="imageautoimport/after.phtml" name="importtoqueue.form.after" alias="form_after"/>
+        </reference>
+    </adminhtml_imageautoimport_index>
+    <adminhtml_imageautoimport_flow>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="imageautoimport/adminhtml_gridcontainer" name="importtoqueue_gridcontainer"/>
+        </block>
+    </adminhtml_imageautoimport_flow>
+    <adminhtml_imageautoimport_flowgrid>
+        <update handle="adminhtml_imageautoimport_flow"/>
+    </adminhtml_imageautoimport_flowgrid>
+</layout>

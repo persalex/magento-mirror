@@ -1,0 +1,12 @@
+<script type="text/javascript">
+//<![CDATA[
+    var queueButtonUrl = "<?php echo $this->getUrl('*/imageautoimport/index'); ?>";
+    var butElem = document.getElementsByClassName('imageautoimport');
+    var innerTags = butElem[0].querySelectorAll("*");
+    innerTags.forEach(function(item) {
+        if (item.innerText) {
+            item.innerText = "<?php echo Mage::helper('imageautoimport')->__("Import of Images"); ?>";
+        }
+    });
+//]]>
+</script>
