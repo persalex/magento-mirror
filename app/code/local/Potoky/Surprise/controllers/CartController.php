@@ -272,7 +272,7 @@ class Potoky_Surprise_CartController extends Mage_Checkout_CartController
                         break;
                     }
                 }
-                $price = $item->getProduct()->getPrice();
+                $price = $item->getBaseOriginalPrice();
                 $item->setOriginalCustomPrice($price - $s / $p);
                 $item->save();
             }
@@ -323,6 +323,140 @@ class Potoky_Surprise_CartController extends Mage_Checkout_CartController
         }
 
         $this->_redirectReferer(Mage::getUrl('*/*'));
+    }
+
+    public function ajaxDeleteAction()
+    {
+        if (!$this->_validateFormKey()) {
+            Mage::throwException('Invalid form key');
+        }
+        $id = (int) $this->getRequest()->getParam('id');
+        $result = array();
+        if ($id) {
+            try {
+                //insert statrt
+                $cart = $this->_getCart();
+                $carttree = $cart->getCarttree();
+                $prod_id = $this->_getQuote()
+                    ->getItemById($id)
+                    ->getProduct()
+                    ->getId();
+                $check = $cart->isSurpriseItem($id);
+                if ($check) {
+                    Mage::register('check', $check);
+                    $cart->removeItem($id)->save();
+                    $this->cartFinalWorkout($cart);
+                }
+                elseif ($carttree[$prod_id]['quoteitem'] && count($carttree[$prod_id]['quoteitem']) > 1) {
+                    foreach ($carttree as $main_id) {
+                        foreach ($main_id['quoteitem'] as $qii => $qty) {
+                            $data[$qii] = array('qty' => ($qii == $id) ? 0 : $qty);
+                        }
+                    }
+                    Mage::register('cart', $cart);
+                    $this->ajaxUpdateAction($data);
+                }
+                else {
+                    Mage::register('prod_id', $prod_id);
+                    $qty = -$carttree[$prod_id]['quoteitem'][$id];
+                    $cart->isSurpriseProduct($prod_id, $qty, true);
+                    $cart->removeItem($id)->save();
+                    $this->cartFinalWorkout($cart);
+                }
+                //insert end
+
+                $result['qty'] = $this->_getCart()->getSummaryQty();
+
+                $this->loadLayout();
+                $result['content'] = $this->getLayout()->getBlock('minicart_content')->toHtml();
+
+                $result['success'] = 1;
+                $result['message'] = $this->__('Item was removed successfully.');
+                Mage::dispatchEvent('ajax_cart_remove_item_success', array('id' => $id));
+            } catch (Exception $e) {
+                $result['success'] = 0;
+                $result['error'] = $this->__('Can not remove the item.');
+            }
+        }
+
+        $this->getResponse()->setHeader('Content-type', 'application/json');
+        $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));
+    }
+
+    public function ajaxUpdateAction($data)
+    {
+        if (!$this->_validateFormKey()) {
+            Mage::throwException('Invalid form key');
+        }
+        $id = (int)$this->getRequest()->getParam('id');
+        $qty = $this->getRequest()->getParam('qty');
+        $result = array();
+        if ($id) {
+            try {
+                $cart = (Mage::registry('cart')) ? Mage::registry('cart') : $this->_getCart();
+                if (isset($qty)) {
+                    $filter = new Zend_Filter_LocalizedToNormalized(
+                        array('locale' => Mage::app()->getLocale()->getLocaleCode())
+                    );
+                    $qty = $filter->filter($qty);
+                }
+
+                $quoteItem = $cart->getQuote()->getItemById($id);
+                if (!$quoteItem) {
+                    Mage::throwException($this->__('Quote item is not found.'));
+                }
+                $cartData = ($data) ? $data : array(
+                    $id => array(
+                        'qty' => $qty
+                    )
+                );
+                $cartData = $cart->suggestItemsQty($cartData);
+                $cart->updateItems($cartData);
+                if($foradd = Mage::registry('foradd')) {
+                    foreach ($foradd as $id => $qty) {
+                        $product = $this->_initProduct($id);
+                        if($surproducts = $product->getSurpriseProducts()) {
+                            $pars = ['product' => $id, 'qty' => $qty];
+                            $nondecrease = (int) Mage::getStoreConfig('nondecrease/general/quantity');
+                            $surproducts = $cart->suggestSurpriseQty($surproducts, $pars, $nondecrease);
+                            $this->pushSurprise($surproducts, $pars['product'], $cart);
+                            $model = Mage::getModel('potoky_surprise/surprise');
+                            foreach ($surproducts as $key => $value) {
+                                $update_id = $model->getCollection()
+                                    ->addFieldToFilter('product_id', array('eq' => $pars['product']))
+                                    ->addFieldToFilter('linked_product_id', array('eq' => $key))
+                                    ->getAllIds()[0];
+                                $quoted_qty = $model->load($update_id)['quoted_qty'];
+                                $value = $value + $quoted_qty;
+                                $model->setData(array('surprise_id' => $update_id, 'quoted_qty' => $value));
+                                $model->save();
+                            }
+                        }
+                    }
+                }
+
+                $cart->save();
+                $this->cartFinalWorkout($cart);
+
+                $this->loadLayout();
+                $result['content'] = $this->getLayout()->getBlock('minicart_content')->toHtml();
+
+                $result['qty'] = $this->_getCart()->getSummaryQty();
+
+                if (!$quoteItem->getHasError()) {
+                    $result['message'] = $this->__('Item was updated successfully.');
+                } else {
+                    $result['notice'] = $quoteItem->getMessage();
+                }
+                $result['success'] = 1;
+            } catch (Exception $e) {
+                $result['success'] = 0;
+                $result['error'] = $this->__('Can not save item.');
+            }
+        }
+
+        $this->getResponse()->setHeader('Content-type', 'application/json');
+        $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));
     }
 
 }
