@@ -1,0 +1,39 @@
+<config>
+    <tabs>
+        <potoky_surp module="potoky_surprise">
+            <label>Surprise settings</label>
+            <sort_order>150</sort_order>
+        </potoky_surp>
+    </tabs>
+    <sections>
+        <nondecrease translate="label" module="potoky_surprise">
+            <label>Non-decrease Level</label>
+            <tab>potoky_surp</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>50</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <quantity translate="label">
+                            <label>Enter non-decrease quantity:</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </quantity>
+                    </fields>
+                </general>
+            </groups>
+        </nondecrease>
+    </sections>
+</config>

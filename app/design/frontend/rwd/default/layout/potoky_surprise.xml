@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="header">
+            <block type="checkout/cart_minicart" name="minicart_head" template="checkout/cart/minicart.phtml" before="-">
+                <block type="checkout/cart_sidebar" name="minicart_content" template="checkout/cart/minicart/items.phtml">
+                    <action method="addItemRender"><type>default</type><block>checkout/cart_item_renderer</block><template>potoky_surprise/checkout/cart/minicart/default.phtml</template></action>
+                    <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>potoky_surprise/checkout/cart/minicart/default.phtml</template></action>
+                    <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>potoky_surprise/checkout/cart/minicart/default.phtml</template></action>
+                    <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>potoky_surprise/checkout/cart/minicart/default.phtml</template></action>
+                </block>
+            </block>
+        </reference>
+    </default>
+    <checkout_onepage_review>
+        <reference name="root">
+            <action method="addItemRender"><type>default</type><block>checkout/cart_item_renderer</block><template>potoky_surprise/checkout/onepage/review/item.phtml</template></action>
+            <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>potoky_surprise/checkout/onepage/review/item.phtml</template></action>
+            <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>potoky_surprise/checkout/onepage/review/item.phtml</template></action>
+            <block type="checkout/cart_totals" name="checkout.onepage.review.info.totals" as="totals" template="checkout/onepage/review/totals.phtml"/>
+            <block type="core/text_list" name="checkout.onepage.review.info.items.before" as="items_before" translate="label">
+                <label>Items Before</label>
+            </block>
+            <block type="core/text_list" name="checkout.onepage.review.info.items.after" as="items_after" translate="label">
+                <label>Items After</label>
+            </block>
+            <block type="checkout/agreements" name="checkout.onepage.agreements" as="agreements" template="checkout/onepage/agreements.phtml"/>
+            <block type="core/template" name="checkout.onepage.review.button" as="button" template="checkout/onepage/review/button.phtml"/>
+        </reference>
+    </checkout_onepage_review>
+    <checkout_cart_index>
+        <reference name="checkout.cart">
+            <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>potoky_surprise/checkout/cart/item/default.phtml</template></action>
+            <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>potoky_surprise/checkout/cart/item/default.phtml</template></action>
+            <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>potoky_surprise/checkout/cart/item/default.phtml</template></action>
+        </reference>
+    </checkout_cart_index>
+    <sales_order_view>
+        <reference name="sales.order.view">
+            <block type="sales/order_items" name="order_items" template="sales/order/items.phtml">
+                <action method="addItemRender"><type>default</type><block>sales/order_item_renderer_default</block><template>potoky_surprise/sales/order/items/renderer/default.phtml</template></action>
+                <action method="addItemRender"><type>grouped</type><block>sales/order_item_renderer_grouped</block><template>potoky_surprise/sales/order/items/renderer/default.phtml</template></action>
+            </block>
+        </reference>
+    </sales_order_view>
+</layout>
