@@ -1,0 +1,17 @@
+<?php
+    extract(Mage::registry('viewed_product'));
+    $expiry = Mage::getSingleton('core/session')->getData('viewed_products')['expiry'] * 1000;
+?>
+<script>
+    var viewedList = localStorage.getItem("viewed_products");
+    if (!viewedList || viewedList === "[]") {
+        viewedList = {};
+    } else {
+        viewedList = JSON.parse(viewedList);
+    }
+        if(viewedList.<?= $sku ?>) {
+            delete viewedList.<?= $sku ?>;
+        }
+        viewedList.<?= $sku ?> = <?= $productInfo ?>;
+        renderStorage(viewedList, <?= $expiry ?>);
+</script>
