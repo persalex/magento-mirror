@@ -1,0 +1,25 @@
+<?php
+    $prodsInfoArr = Mage::helper('viewedproducts/product')
+        ->getProductInfo([Mage::registry('current_product')]);
+    $sku = array_keys($prodsInfoArr)[0];
+    $productInfo = Mage::helper('core')->jsonEncode($prodsInfoArr[$sku]);
+
+    $async = Mage::getStoreConfig('catalog/js_viewed_products/ajax_async');
+    $lifetime = Mage::helper('viewedproducts/lifetime')->getLifetime();
+
+    $expiry = (time() + $lifetime) * 1000;
+?>
+<script>
+    var viewedList = potokyViewedProducts.storageContent(<?= $async ?>, <?= $lifetime ?>);
+    if (!jQuery.isEmptyObject(viewedList)) {
+        viewedList = JSON.parse(viewedList);
+        if(viewedList.<?= $sku ?>) {
+            delete viewedList.<?= $sku ?>;
+        }
+    }
+    viewedList.<?= $sku ?> = <?= $productInfo ?>;
+    potokyViewedProducts.renderStorage(viewedList, <?= $expiry ?>);
+    if (potokyViewedProducts.needsUpdate) {
+        potokyViewedProducts.ajaxUpdateViewed(<?= $async ?>, "<?= $sku ?>");
+    }
+</script>
