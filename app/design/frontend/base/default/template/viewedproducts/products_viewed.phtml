@@ -17,8 +17,6 @@
         products = fillData(viewedList);
     }
     if (Object.keys(products).length !== 0) {
-        var scriptTag = document.scripts[document.scripts.length - 1];
-        var parentTag = scriptTag.parentNode;
         document.writeln('<div class="block block-list block-viewed">');
         document.writeln('<div class="block-title">');
         document.writeln('<strong><span><?php echo $this->__('Recently Viewed Products') ?></span></strong>');
