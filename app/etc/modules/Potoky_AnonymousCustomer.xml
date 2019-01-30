@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Potoky_AnonymousCustomer>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Potoky_AnonymousCustomer>
+    </modules>
+</config>

@@ -1,0 +1,11 @@
+<config>
+    <modules>
+        <Potoky_AlertAnonymous>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_ProductAlert/>
+            </depends>
+        </Potoky_AlertAnonymous>
+    </modules>
+</config>
