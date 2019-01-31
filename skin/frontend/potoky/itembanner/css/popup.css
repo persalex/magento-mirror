@@ -1,0 +1,55 @@
+
+.ui-dialog-titlebar.ib-popup {
+    background-color: orangered;
+    color: white;
+    border: none;
+    font-size: 16px;
+    font-weight: normal;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.ib-popup .ui-dialog-title.ib-popup {
+    float: none;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.ui-dialog-buttonpane.ib-popup.ui-widget-content.ui-helper-clearfix {
+    text-align: center;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.ui-dialog-buttonpane.ib-popup.ui-widget-content.ui-helper-clearfix .ui-dialog-buttonset.ib-popup {
+    text-align: center;
+    float: none;
+}
+
+.ui-widget.ui-button.ib-popup {
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close.ui-button.ib-popup {
+    top: 0;
+    left: 100%;
+    margin: -9px 0 0 -20px;
+    border: none;
+    border-radius: 100%;
+    background-color: orangered;
+    width: 30px;
+    height: 30px;
+}
+
+.ui-button-icon.ui-icon.ui-icon-closethick {
+    background-image: url(images/ui-icons_ffffff_256x240.png);
+}
+
+.ui-dialog-content.ib-popup.ui-widget-content {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+
+}

@@ -1,0 +1,76 @@
+
+.ib_containers:first-of-type {
+    margin-right: 1%;
+}
+
+.ib_containers {
+    width: 49.5%;
+    float: left;
+    border: solid black 1px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.ib_crops {
+    width: 100%;
+}
+
+#ibw_body {
+    background-color: aliceblue;
+    padding:0;
+    margin:0
+}
+
+#ib_main_container {
+    text-align: center;
+    width: 1200px;
+    height: auto;
+    margin: 10px;
+}
+
+#ib_cancel {
+    margin-top: 20px;
+    margin-right: 0.1em;
+    width: 150px;
+    height: 30px;
+    cursor: hand;
+}
+
+#ib_submit {
+    margin-top: 20px;
+    margin-left: 0.1em;
+    width: 150px;
+    height: 30px;
+    cursor: hand;
+}
+
+.ib_crop_enable, .ib_crop_highlight {
+    position: absolute;
+    left: 1%;
+}
+
+.ib_crop_enable.ib_pseudo_disable {
+    background: lightgrey;
+    color: grey;
+}
+
+.ib_crop_revert {
+    position: absolute;
+    right: 1%;
+    background: transparent;
+    color: black;
+    border: none;
+}
+
+.ib_crop_revert {
+    color: black;
+}
+
+.ib_crop_revert:hover {
+    background: none;
+    color: red;
+}
+
+.ib_crop_revert.ib_pseudo_disable, .ib_crop_revert:disabled, .ib_crop_revert.ib_pseudo_disable:disabled{
+    color: grey;
+}

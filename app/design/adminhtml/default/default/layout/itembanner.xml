@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_widget_instance_edit>
+        <reference name="head">
+            <action method="addJs"><script>lib/jquery/jquery-1.12.0.min.js</script></action>
+            <action method="addJs"><script>local/itembanner/jquery-ui.min.js</script></action>
+            <action method="addJs"><script>lib/jquery/noconflict.js</script></action>
+            <action method="addJs"><script>local/itembanner/itembanner.js</script></action>
+            <action method="addJs"><script>local/itembanner/jquery.Jcrop.min.js</script></action>
+            <action method="addCss"><name>itembanner/jquery.Jcrop.css</name></action>
+            <action method="addCss"><name>itembanner/edit.css</name></action>
+            <action method="addCss"><name>itembanner/jquery-ui.min.css</name></action>
+        </reference>
+    </adminhtml_widget_instance_edit>
+</layout>

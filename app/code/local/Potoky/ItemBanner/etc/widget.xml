@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<widgets>
+    <itembanner_banner type="itembanner/banner" translate="name description" module="itembanner">
+            <name>Banner inserted into products</name>
+            <description type="desc">Depending on set position appears in place of a product block in the product list or grid</description>
+        <parameters>
+            <is_active>
+                <label>Is This Banner Active</label>
+                <visible>1</visible>
+                <default>0</default>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </is_active>
+            <image>
+                <label>Image For Banner</label>
+                <visible>1</visible>
+                <required>0</required>
+                <type>ib_image</type>
+                <note>*.jpg, *.png, *.gif, *.jpeg</note>
+            </image>
+            <position_in_grid>
+                <label>The Position of the Banner in the Grid</label>
+                <visible>1</visible>
+                <type>text</type>
+                <note>Position in Grid</note>
+            </position_in_grid>
+            <position_in_list>
+                <label>The Position of the Banner in the List</label>
+                <visible>1</visible>
+                <type>text</type>
+                <note>Position in List</note>
+            </position_in_list>
+            <rel_coords_grid>
+                <label>Coordinates of the Grid Mode Selection</label>
+                <visible>0</visible>
+                <type>text</type>
+                <value>[]</value>
+            </rel_coords_grid>
+            <rel_coords_list>
+                <label>Coordinates of the List Mode Selection</label>
+                <visible>0</visible>
+                <type>text</type>
+                <value>[]</value>
+            </rel_coords_list>
+            <orig_aspect_ratio_grid>
+                <label>Original Aspect Ratio of the Grid Mode Croppeing</label>
+                <visible>0</visible>
+                <type>text</type>
+            </orig_aspect_ratio_grid>
+            <orig_aspect_ratio_list>
+                <label>Original Aspect Ratio of the List Mode Croppeing</label>
+                <visible>0</visible>
+                <type>text</type>
+            </orig_aspect_ratio_list>
+            <title>
+                <label>Title for Itembanner Widget</label>
+                <visible>1</visible>
+                <type>text</type>
+            </title>
+            <description>
+                <label>Description for Itembanner Widget</label>
+                <visible>1</visible>
+                <type>editor</type>
+            </description>
+            <link>
+                <label>Link for Itembanner Widget Popup</label>
+                <visible>1</visible>
+                <type>text</type>
+            </link>
+            <goto>
+                <label>Link Clicks Count</label>
+                <visible>1</visible>
+                <type>text</type>
+            </goto>
+            <template translate="label">
+                <label>Template</label>
+                <visible>1</visible>
+                <type>select</type>
+                <values>
+                    <default translate="label">
+                        <value>itembanner.phtml</value>
+                        <label>Itembanner Block Default Template</label>
+                    </default>
+                </values>
+                <sort_order>10</sort_order>
+            </template>
+        </parameters>
+    </itembanner_banner>
+</widgets>
