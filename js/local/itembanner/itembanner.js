@@ -426,7 +426,7 @@ function imagePreview(element){
         if(!itemBannerInstance.isIt) {
             win = win.open('', 'preview', 'width=400,height=400,resizable=1,scrollbars=1');
             win.document.open();
-            win.document.write('<body style="padding:0;margin:0"><img src="'+$(element).src+'" id="image_preview"/></body>');
+            win.document.write('<body style="padding:0;margin:0"><img src="' + $(element).src + '" id="image_preview" alt="Problems with image loading"/></body>');
             win.document.close();
             Event.observe(win, 'load', function(){
                 var img = win.document.getElementById('image_preview');
@@ -444,16 +444,17 @@ function imagePreview(element){
             win = win.open('', 'preview', 'width=1200,height=1200,resizable=1,scrollbars=1');
             win.document.open();
             win.document.write('<head>');
-            win.document.write('<link rel="stylesheet" type="text/css" href="http://review3.school.com/skin/adminhtml/default/default/itembanner/jquery.Jcrop.css" media="all">');
-            win.document.write('<link rel="stylesheet" type="text/css" href="http://review3.school.com/skin/adminhtml/default/default/itembanner/edit.css" media="all">');
-            win.document.write('<link rel="stylesheet" type="text/css" href="http://review3.school.com/skin/adminhtml/default/default/boxes.css" media="all">');
-            win.document.write('<script type="text/javascript" src="http://review3.school.com/js/lib/jquery/jquery-1.12.0.min.js"></script>');
-            win.document.write('<script type="text/javascript" src="http://review3.school.com/js/local/itembanner/jquery.Jcrop.min.js"></script>');
+            win.document.write('<title>Cropping</title>');
+            win.document.write('<link rel="stylesheet" type="text/css" href="' + outerVariables.baseURL + 'skin/adminhtml/default/default/itembanner/jquery.Jcrop.css" media="all">');
+            win.document.write('<link rel="stylesheet" type="text/css" href="' + outerVariables.baseURL + 'skin/adminhtml/default/default/itembanner/edit.css" media="all">');
+            win.document.write('<link rel="stylesheet" type="text/css" href="' + outerVariables.baseURL + 'skin/adminhtml/default/default/boxes.css" media="all">');
+            win.document.write('<script type="text/javascript" src="' + outerVariables.baseURL + 'js/lib/jquery/jquery-1.12.0.min.js"></script>');
+            win.document.write('<script type="text/javascript" src="' + outerVariables.baseURL + 'js/local/itembanner/jquery.Jcrop.min.js"></script>');
             win.document.write('</head>');
             win.document.write('<body id="ibw_body">');
             win.document.write('<div id="ib_main_container">');
             win.document.write('<div class="ib_containers">');
-            win.document.write('<img id="image_preview_grid" class="ib_crops" src="'+$(element).src+'"/>');
+            win.document.write('<img id="image_preview_grid" class="ib_crops" src="' + $(element).src + '" alt="Problems with image loading"/>');
             win.document.write('<h4>');
             win.document.write('<button class="ib_crop_highlight" id="ib_crop_highlight_grid">test</button>');
             win.document.write(outerVariables.gridCroppingWindow);
@@ -461,7 +462,7 @@ function imagePreview(element){
             win.document.write('</h4>');
             win.document.write('</div>');
             win.document.write('<div class="ib_containers">');
-            win.document.write('<img id="image_preview_list" class="ib_crops" src="'+$(element).src+'"/>');
+            win.document.write('<img id="image_preview_list" class="ib_crops" src="' + $(element).src + '" alt="Problems with image loading"/>');
             win.document.write('<h4>');
             win.document.write('<button class="ib_crop_highlight" id="ib_crop_highlight_list">test</button>');
             win.document.write(outerVariables.listCroppingWindow);

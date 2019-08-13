@@ -13,18 +13,20 @@
         frozen: "<?= Mage::helper('itembanner')->__('Unfreeze') ?>",
         unfrozen: "<?= Mage::helper('itembanner')->__('Freeze') ?>",
         highlight: "<?= Mage::helper('itembanner')->__('Highlight') ?>",
-        revert: "<?= Mage::helper('itembanner')->__('revert') ?>"  + ' ⮌',
+        revert: "<?= Mage::helper('itembanner')->__('revert') ?>" + ' &#8617',
         origImageSquare: "<?= $this->getImageSquare() ?>",
         instanceHtmlIdPrefix: "<?= 'options_fieldset'. md5('itembanner/banner')?>",
         startingErrorMessage: "<?= Mage::helper('itembanner')->__(Mage::helper('itembanner')->getErrorMessage('starting_message')) ?>",
         noImageErrorMessage: "<?= Mage::helper('itembanner')->__(Mage::helper('itembanner')->getErrorMessage('image')[0]) ?>",
         gridRelCoordsErrorMessage: "<?= Mage::helper('itembanner')->__(Mage::helper('itembanner')->getErrorMessage('rel_coords')[0]) ?>",
-        listRelCoordsErrorMessage: "<?= Mage::helper('itembanner')->__(Mage::helper('itembanner')->getErrorMessage('rel_coords')[1]) ?>"
+        listRelCoordsErrorMessage: "<?= Mage::helper('itembanner')->__(Mage::helper('itembanner')->getErrorMessage('rel_coords')[1]) ?>",
+        baseURL: "<?= Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) ?>"
     }
 </script>
 <div style="text-align: center; width: 100%;">
     <div class="ib_containers">
-        <img id="image_preview_grid" class="ib_crops" src="<?= $this->getImageUrl() ?>">
+        <img id="image_preview_grid" class="ib_crops" src="<?= $this->getImageUrl() ?>"
+             alt="Problems with image loading">
         <h4 style="margin-top: .6em;">
             <button class="ib_crop_enable" id="ib_crop_enable_grid"></button>
             <?= Mage::helper('itembanner')->__('Grid Mode Cropping') ?>
@@ -32,7 +34,8 @@
         </h4>
     </div>
     <div class="ib_containers">
-        <img id="image_preview_list" class="ib_crops" src="<?= $this->getImageUrl() ?>">
+        <img id="image_preview_list" class="ib_crops" src="<?= $this->getImageUrl() ?>"
+             alt="Problems with image loading">
         <h4 style="margin-top: .6em;">
             <button class="ib_crop_enable" id="ib_crop_enable_list"></button>
             <?= Mage::helper('itembanner')->__('Grid Mode Cropping') ?>
