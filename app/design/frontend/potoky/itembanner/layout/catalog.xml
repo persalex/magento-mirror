@@ -47,7 +47,7 @@ Supported layout update handles (special):
             <action method="addJs"><script>local/itembanner/jquery-ui.min.js</script></action>
             <action method="addLinkRel">
                 <rel>stylesheet</rel>
-                <href>http://review3.school.com/skin/adminhtml/default/default/itembanner/jquery-ui.min.css</href>
+                <href>/skin/adminhtml/default/default/itembanner/jquery-ui.min.css</href>
             </action>
             <action method="addItem">
                 <type>skin_css</type>
