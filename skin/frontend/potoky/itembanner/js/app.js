@@ -1136,7 +1136,7 @@ $j(document).ready(function () {
                 if ($j(this).attr('class').indexOf('potoky-itembanner') > -1) {
                     banners.push($j(this));
                 } else {
-                    heightSum += $j(this).height();
+                    heightSum += $j(this).innerHeight();
                     heightNum++;
                 }
             });
